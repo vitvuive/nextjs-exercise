@@ -1,9 +1,9 @@
-import MarvelItem from "@/components/MarvelItem";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { Container, Spinner, Text } from "@chakra-ui/react";
 
 import { IMarvel } from "@/interface";
+import MarvelItem from "@/components/MarvelItem";
 import { queryClient } from "../_app";
 
 const getMarvelDetail = async (marvelId: string) => {
