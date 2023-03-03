@@ -1,4 +1,4 @@
-export type TFilter = "show" | "movie" | "tvShow";
+export type TFilter = "all" | "movie" | "tvShow";
 
 export interface IMarvel {
   id: number;

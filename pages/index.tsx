@@ -1,13 +1,14 @@
-import { Container, Flex, Spinner, Text } from "@chakra-ui/react";
 import React from "react";
 import { useQuery } from "react-query";
+import { Container, Flex, Spinner, Text } from "@chakra-ui/react";
+
 import MarvelItem from "@/components/MarvelItem";
 import Header from "@/components/Header";
 import { IMarvel, TFilter } from "@/interface";
 
 const getMarvel = async (type: TFilter) => {
   let params = "";
-  if (type !== "show") {
+  if (type !== "all") {
     params = `?type=${type}`;
   }
   const res = await fetch(`/api/marvel${params}`);
@@ -15,7 +16,7 @@ const getMarvel = async (type: TFilter) => {
 };
 
 const Home = () => {
-  const [filter, setFilter] = React.useState<TFilter>("show");
+  const [filter, setFilter] = React.useState<TFilter>("all");
 
   const { data, isLoading, isError, isSuccess } = useQuery(
     ["marvel", filter],

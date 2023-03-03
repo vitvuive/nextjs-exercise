@@ -1,9 +1,9 @@
 import MarvelItem from "@/components/MarvelItem";
-import { IMarvel } from "@/interface";
-import { Container, Spinner, Text } from "@chakra-ui/react";
-import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import { dehydrate, QueryClient, useQuery } from "react-query";
+import { useQuery } from "react-query";
+import { Container, Spinner, Text } from "@chakra-ui/react";
+
+import { IMarvel } from "@/interface";
 import { queryClient } from "../_app";
 
 const getMarvelDetail = async (marvelId: string) => {
@@ -11,7 +11,7 @@ const getMarvelDetail = async (marvelId: string) => {
   return res.json();
 };
 
-export default function Detail() {
+export default function Marvel() {
   const router = useRouter();
 
   const marvelId = typeof router.query?.id === "string" ? router.query.id : "";
@@ -39,22 +39,3 @@ export default function Detail() {
 
   return <Container paddingTop={8}>{renderResult()}</Container>;
 }
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const id = context.params?.id as string;
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(["getMarvel", id], () => getMarvelDetail(id));
-
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-};

@@ -1,5 +1,4 @@
-import { FALLBACK_SRC } from "@/constant";
-import { IMarvel } from "@/interface";
+import { useRouter } from "next/router";
 import {
   Button,
   ButtonGroup,
@@ -12,7 +11,9 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+
+import { FALLBACK_SRC } from "@/constant";
+import { IMarvel } from "@/interface";
 
 interface IProps {
   data: IMarvel;
@@ -44,7 +45,7 @@ const MarvelItem = ({ data }: IProps) => {
             <Button
               variant="solid"
               colorScheme="blue"
-              onClick={() => router.push(`/detail/${data.id}`)}
+              onClick={() => router.push(`/marvel/${data.id}`)}
             >
               See Detail
             </Button>

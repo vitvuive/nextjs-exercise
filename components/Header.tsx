@@ -30,7 +30,7 @@ const Header = ({ filter, setFilter }: IProps) => {
       <Stack direction={{ base: "column", md: "row" }} alignItems="center">
         <RadioGroup onChange={setFilter} value={filter}>
           <Stack direction="row">
-            <Radio value="show">All</Radio>
+            <Radio value="all">All</Radio>
             <Radio value="movie">Movie</Radio>
             <Radio value="tvShow">TvShow</Radio>
           </Stack>
